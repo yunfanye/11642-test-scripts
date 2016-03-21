@@ -1,0 +1,7 @@
+username=""
+password=""
+best_indri_mu=0
+best_indri_lambda=0.0
+best_and_weight=0.0
+best_near_weight=0.0
+best_window_weight=0.0
