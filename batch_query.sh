@@ -21,7 +21,7 @@ java_output_path=$java_output_path$tag
 python $change_para_py_path $para_file_path $query_file_path 	\
 	$eval_input_path $model $indri_mu $indri_lambda $fb $fbDocs	\
 	$fbTerms $fbOrigWeight $expansionOutput $fbInitialRankingFile
-# compile
+# compile, assume Linux
 javac -cp $class_path -g $java_path/*.java
 # delete may-exist infile due to multiple runs
 rm -f $eval_input_path

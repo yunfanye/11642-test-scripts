@@ -1,4 +1,4 @@
 autograde:
-	bash hw4_batch.sh
+	bash hw4_batch.sh &
 
 
