@@ -53,7 +53,7 @@ fb="true"
 fbDocs=10
 fbTerms=10
 fbOrigWeight=0.5
-fbInitialRankingFile=$reference_SDM
+fbInitialRankingFile=$reference_BOW
 tag="_ex1_qe_ref_sys"
 bash batch_query.sh $model $indri_mu $indri_lambda $fb $fbDocs \
 	$fbTerms $fbOrigWeight $fbInitialRankingFile $tag
