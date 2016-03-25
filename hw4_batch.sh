@@ -18,7 +18,7 @@ source $best_arg_file
 bash hw4_ex4_batch.sh $best_arg_file $best_fbDocs $best_fbTerms >> $bash_log_path
 source $best_arg_file
 bash hw4_ex5_batch.sh $best_arg_file $best_fbDocs $best_fbTerms $best_originWeight >> $bash_log_path
-cat $best_arg_file
+cat $best_arg_file >> $bash_log_path
 # tar into a tar ball for download
 tar -czvf $log_tar_ball_path $log_path
 echo "Test ended"
