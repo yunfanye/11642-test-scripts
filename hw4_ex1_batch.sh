@@ -10,8 +10,14 @@ fbTerms=10
 fbOrigWeight=0.5
 fbInitialRankingFile="null"
 tag="_ex1_rb"
+# Save BOW queries
+cp $query_file_path $query_file_path"_BOW"
+# Change queries to RankedBoolean AND
+cp $query_file_path"_AND" $query_file_path
 bash batch_query.sh $model $indri_mu $indri_lambda $fb $fbDocs \
 	$fbTerms $fbOrigWeight $fbInitialRankingFile $tag
+# Restore queries
+cp $query_file_path"_BOW" $query_file_path
 # Indri BOW your sys
 model="Indri"
 indri_mu=1000
