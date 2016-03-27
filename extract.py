@@ -9,7 +9,7 @@ interest_set = ['P10', 'P20', 'P30', 'map', 'win']
 
 names=dict()
 for i in range(2, len(sys.argv)):
-	start = sys.argv[i].rindex("/")
+	start = sys.argv[i].rfind("/")
 	names[i] = sys.argv[i][(start + 1):]
 
 for i in range(len(sys.argv)):
