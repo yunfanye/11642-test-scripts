@@ -5,7 +5,7 @@ source ./fixed-parameters
 mkdir $log_path
 # assume default settings at aws ec2
 echo "Test started. You can monitor the progress at"	\
- 	"http://your-domain-name/log/info.php." 			\
+ 	"http://your-domain-name/log/."			 			\
  	"All logs can be downloaded at" 					\
  	"http://your-domain-name/log.tar.gz"				\
  	"after completion."
