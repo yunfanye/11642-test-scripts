@@ -11,19 +11,16 @@ fbTerms=$best_fbTerms
 fbOrigWeight=$best_originWeight
 
 model="Indri"
-# Indri BOW origin
-fb="false"
-fbInitialRankingFile="null"
-tag="_ex5_bow_ori"
-bash batch_query.sh $model $indri_mu $indri_lambda $fb $fbDocs \
-	$fbTerms $fbOrigWeight $fbInitialRankingFile $tag
-# Indri BOW your sys
-fb="true"
-fbInitialRankingFile="null"
-tag="_ex5_bow_you_qe"
-bash batch_query.sh $model $indri_mu $indri_lambda $fb $fbDocs \
-	$fbTerms $fbOrigWeight $fbInitialRankingFile $tag
-# Indri BOW ref sys
+# Indri BOW ref sys origin
+tag="_ex5_bow_ref_ori"
+eval_output_path=$eval_out_file_path$tag
+direct_analysis_output_path=$analysis_output_path$tag
+perl $fetch_pl_file_path $username $password \
+	$reference_BOW $eval_output_path "Detailed"
+# retrieve interested results, i.e. P@10, P@20, P@30, MAP
+python $analyze_py_file_path $eval_output_path \
+	$direct_analysis_output_path
+# Indri BOW ref sys query expansion
 fb="true"
 fbInitialRankingFile=$reference_BOW
 tag="_ex5_bow_ref_qe"
@@ -38,18 +35,15 @@ perl $SDM_pl_file_path $best_and_weight $best_near_weight \
 	$best_window_weight $query_file_path $query_file_path"_SDM"
 # replace the query
 cp $query_file_path"_SDM" $query_file_path 
-# Indri SDM origin
-fb="false"
-fbInitialRankingFile="null"
-tag="_ex5_sdm_ori"
-bash batch_query.sh $model $indri_mu $indri_lambda $fb $fbDocs \
-	$fbTerms $fbOrigWeight $fbInitialRankingFile $tag
-# Indri SDM your sys
-fb="true"
-fbInitialRankingFile="null"
-tag="_ex5_sdm_you_qe"
-bash batch_query.sh $model $indri_mu $indri_lambda $fb $fbDocs \
-	$fbTerms $fbOrigWeight $fbInitialRankingFile $tag
+# Indri SDM ref sys origin
+tag="_ex5_sdm_ref_ori"
+eval_output_path=$eval_out_file_path$tag
+direct_analysis_output_path=$analysis_output_path$tag
+perl $fetch_pl_file_path $username $password \
+	$reference_SDM $eval_output_path "Detailed"
+# retrieve interested results, i.e. P@10, P@20, P@30, MAP
+python $analyze_py_file_path $eval_output_path \
+	$direct_analysis_output_path
 # Indri SDM ref sys
 fb="true"
 fbInitialRankingFile=$reference_SDM
@@ -60,11 +54,9 @@ bash batch_query.sh $model $indri_mu $indri_lambda $fb $fbDocs \
 # extract final result
 python extract.py $final_result_output_path"_ex5"			\
 		$analysis_output_path"_ex1_rb"						\
-		$analysis_output_path"_ex5_bow_ori"					\
-		$analysis_output_path"_ex5_bow_you_qe"				\
+		$analysis_output_path"_ex5_bow_ref_ori"				\
 		$analysis_output_path"_ex5_bow_ref_qe"				\
-		$analysis_output_path"_ex5_sdm_ori"					\
-		$analysis_output_path"_ex5_sdm_you_qe"				\
+		$analysis_output_path"_ex5_sdm_ref_ori"				\
 		$analysis_output_path"_ex5_sdm_ref_qe"				
 
 # restore the query

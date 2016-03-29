@@ -10,7 +10,7 @@ do
 	fb="true"
 	fbDocs=$best_fbDocs
 	fbTerms=$best_fbTerms
-	fbInitialRankingFile=$reference_SDM
+	fbInitialRankingFile=$reference_BOW
 	tag="_ex4_qe_ref_sys"$fbOrigWeight
 	bash batch_query.sh $model $indri_mu $indri_lambda $fb $fbDocs \
 		$fbTerms $fbOrigWeight $fbInitialRankingFile $tag
